@@ -22,7 +22,7 @@ const ButtonStyled = styled.button`
 
 function Button(props: any) {
     return (
-        <ButtonStyled onClick={() => props.handleClick()}>
+        <ButtonStyled onClick={props.handleClick}>
             {props.children}
         </ButtonStyled>
     )

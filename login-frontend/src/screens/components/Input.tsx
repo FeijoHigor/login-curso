@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import emailIcon from '../../assets/email-icon.svg'
 import passwordIcon from '../../assets/password-icon.svg'
 import nameIcon from '../../assets/name-icon.svg'
+import { useState } from 'react'
 
 const StyledField = styled.div`
     width: 80%;
@@ -44,6 +45,12 @@ const StyledInput = styled.input.attrs({
 
 function Input(props: any) {
 
+    const onChange = (ev: any) => {
+        const { name, value } = ev.target
+
+        props.sendText({name, value})
+    }
+
     return (
         <StyledField>
             <StyledLabel>
@@ -56,8 +63,10 @@ function Input(props: any) {
             </StyledLabel>
             <StyledInput 
                 placeholder={props.type == 'name' ? 'Nome de usuário' : props.type == 'email' ? 'Email' : props.type == 'password' ? 'Senha' : 'oloco bicho'} 
-                type={props.type == 'name' ? 'text' : props.type}></StyledInput
-            >
+                type={props.type == 'name' ? 'text' : props.type}
+                onChange={onChange}
+                name={props.type}
+            />
         </StyledField>
     )
 }
